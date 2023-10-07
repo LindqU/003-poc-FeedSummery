@@ -1,5 +1,10 @@
 {
   "recommendations": [
-    "bierner.markdown-mermaid"
+    "bierner.markdown-mermaid",
+    "natqe.reload",
+    "ms-python.mypy-type-checker",
+    "ms-python.black-formatter",
+    "ms-python.flake8",
+    "ms-python.isort"
   ]
 }

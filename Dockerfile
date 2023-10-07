@@ -26,13 +26,17 @@ RUN DEBIAN_FRONTEND=noninteractive \
     liblzma-dev
 
 # Python and poetry installation
-USER $USER
+USER $USER  
 ARG HOME="/home/$USER"
 ARG PYTHON_VERSION=3.10
 # ARG PYTHON_VERSION=3.10
 
 ENV PYENV_ROOT="${HOME}/.pyenv"
 ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${HOME}/.local/bin:$PATH"
+
+COPY poetry.lock .
+COPY pyproject.toml .
+COPY poetry.toml .
 
 RUN echo "done 0" \
     && curl https://pyenv.run | bash \
@@ -41,8 +45,5 @@ RUN echo "done 0" \
     && echo "done 2" \
     && pyenv global ${PYTHON_VERSION} \
     && echo "done 3" \
-    && curl -sSL https://install.python-poetry.org | python3 - \
-    && poetry config virtualenvs.in-project true
-
-# RUN poetry config virtualenvs.create false
-# RUN poetry install
+    && curl -sSL https://install.python-poetry.org | python3 -
+RUN poetry install
