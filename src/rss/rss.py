@@ -3,13 +3,7 @@ rss feed readerによるrssのリクエストモジュール
 """
 import feedparser
 from datetime import datetime, timezone, timedelta
-import logging
-
-# loggerの設定
-logger = logging.getLogger(__name__)
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
+from util.log import logger
 
 
 class RssReader:
@@ -19,14 +13,14 @@ class RssReader:
         self.rss_url = rss_url
 
     def get_feed(self, date_duration: int = 7):
-        logging.info("duration : %s", date_duration)
+        logger.info("duration : %s", date_duration)
 
         feeds = feedparser.parse(self.rss_url)
 
         today = datetime.now(timezone.utc)
         limit_date = today - timedelta(days=date_duration)
 
-        logger.debug("feedsの取得開始")
+        logger.info("feedsの取得開始")
         feed_list = []
 
         for feed in feeds.entries:
@@ -44,6 +38,6 @@ class RssReader:
                 )
                 break
 
-        logger.debug("feedsの取得完了。合計取得feed数 : %s", len(feed_list))
+        logger.info("feedsの取得完了。合計取得feed数 : %s", len(feed_list))
 
         return feed_list
