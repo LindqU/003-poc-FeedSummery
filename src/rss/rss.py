@@ -13,10 +13,14 @@ logging.basicConfig(
 
 
 class RssReader:
-    def __init__(self, rss_url: str):
+    def __init__(self, rss_url: str | None):
+        if rss_url is None:
+            raise ValueError("rss_url is None")
         self.rss_url = rss_url
 
-    def get_feed(self, date_duration: int = 7, n: int = None):
+    def get_feed(self, date_duration: int = 7):
+        logging.info("duration : %s", date_duration)
+
         feeds = feedparser.parse(self.rss_url)
 
         today = datetime.now(timezone.utc)
@@ -40,6 +44,6 @@ class RssReader:
                 )
                 break
 
-        logger.debug("feedsの取得完了")
+        logger.debug("feedsの取得完了。合計取得feed数 : %s", len(feed_list))
 
         return feed_list
