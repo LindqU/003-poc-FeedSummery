@@ -1,2 +1,5 @@
 .env
 **/__pycache__/**
+# サンプルデータを格納するため。
+text.txt
+src/outputs/

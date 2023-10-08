@@ -1,7 +1,9 @@
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain.output_parsers import PydanticOutputParser
 from langchain.llms import OpenAI
 from util.log import logger
+from langchain.pydantic_v1 import BaseModel, Field
+from datetime import datetime
 
 
 class BasePrompt:
@@ -24,7 +26,7 @@ class BasePrompt:
             validate_template=True,
             partial_variables={"format_instructions": parser.get_format_instructions()},
         )
-        self.prompt = base_prompt.format_prompt(query)
+        self.prompt = base_prompt.format_prompt(query=query)
 
     def get_prompt(self):
         return self.prompt
@@ -33,3 +35,9 @@ class BasePrompt:
         prompt = self.prompt.to_string()
         logger.info("Prompt\n%s", prompt)
         return self._model(prompt)
+
+
+class OutputSchema(BaseModel):
+    ad_type: str = Field(description="広告の種類")
+    change_start_date: datetime = Field(description="変更が始まる時期")
+    content: str = Field(description="変更内容について")

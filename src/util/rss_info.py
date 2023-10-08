@@ -1,16 +1,8 @@
 """
 RSSフィードで取得するURL群の管理
 """
-
-from dataclasses import dataclass
 from typing import List, Dict
 import json
-
-
-# @dataclass
-# class RssUrl:
-#     url: str
-#     description: str
 
 
 RSS_JSON_PATH = "src/util/target_rss.json"
