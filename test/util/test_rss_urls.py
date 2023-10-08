@@ -1,4 +1,4 @@
-from src.util.rss_info import RssUrls
+from src.util.rss_info import RssInfo
 
 
 def test_get_rss_url():
@@ -9,5 +9,5 @@ def test_get_rss_url():
             "description": "Google Ads API RSS URL",
         }
     ]
-    rss_urls = RssUrls.get_rss_urls()
+    rss_urls = RssInfo.get_rss_infos()
     assert rss_urls == ans
