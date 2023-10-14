@@ -2,4 +2,4 @@
 **/__pycache__/**
 # サンプルデータを格納するため。
 text.txt
-src/outputs/
+datapipeline/src/outputs/

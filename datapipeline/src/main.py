@@ -24,7 +24,7 @@ def main() -> str:
         url = rss_info.get("url")
         logger.info("rss_name : %s description : %s", name, description)
         rss_reader = RssReader(rss_url=url)
-        feed_list = rss_reader.get_feed()
+        feed_list = rss_reader.get_feed(date_duration=30)
         logger.debug("rss_info : %s", feed_list)
         feed_dict[name] = feed_list
     # file exportは実装する...？

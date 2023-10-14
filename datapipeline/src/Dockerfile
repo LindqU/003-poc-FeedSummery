@@ -28,15 +28,15 @@ RUN DEBIAN_FRONTEND=noninteractive \
 # Python and poetry installation
 USER $USER  
 ARG HOME="/home/$USER"
-ARG PYTHON_VERSION=3.10
-# ARG PYTHON_VERSION=3.10
+ARG PYTHON_VERSION=3.11
+# ARG PYTHON_VERSION=3.11
 
 ENV PYENV_ROOT="${HOME}/.pyenv"
 ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${HOME}/.local/bin:$PATH"
 
-COPY poetry.lock .
-COPY pyproject.toml .
-COPY poetry.toml .
+# COPY datapipeline/src/poetry.lock .
+# COPY datapipeline/src/pyproject.toml .
+# COPY datapipeline/src/poetry.toml .
 
 RUN echo "done 0" \
     && curl https://pyenv.run | bash \
@@ -46,4 +46,4 @@ RUN echo "done 0" \
     && pyenv global ${PYTHON_VERSION} \
     && echo "done 3" \
     && curl -sSL https://install.python-poetry.org | python3 -
-RUN poetry install
+# RUN poetry install

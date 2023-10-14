@@ -3,6 +3,8 @@ rss feed readerによるrssのリクエストモジュール
 """
 import feedparser
 from datetime import datetime, timezone, timedelta
+
+
 from util.log import logger
 
 
