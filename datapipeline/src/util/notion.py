@@ -15,9 +15,7 @@ url = "https://api.notion.com/v1/pages"
 
 # データ追加
 data = {
-    "parent": {
-        "database_id": "df23edee0bcd48c6bf8537bdf6b2c950"
-    },
+    "parent": {"database_id": "df23edee0bcd48c6bf8537bdf6b2c950"},
     "properties": {
         "Name": {
             "title": [{"text": {"content": date}}],

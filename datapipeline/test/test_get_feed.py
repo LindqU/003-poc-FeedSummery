@@ -1,4 +1,4 @@
-from get_feed.lambda_handler import lambda_handler
+from datapipeline.get_feed.lambda_function import lambda_handler
 import pytest
 
 

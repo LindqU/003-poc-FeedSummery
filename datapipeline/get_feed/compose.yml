@@ -1,0 +1,16 @@
+# srcのrssとutilとllmのディレクトリをコピーしたコンテナの作成
+# 環境変数は.envで定義。
+services:
+  lambda:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/task
+      - ./../src/util:/var/task/src/util
+      - ./../src/rss:/var/task/src/rss
+    env_file:
+      - .env
+    # command: "lambda_function.lambda_handler"
+    ports:
+      - "9000:8080"
